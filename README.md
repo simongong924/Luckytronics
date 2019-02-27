@@ -2,7 +2,7 @@
 
 Place for the ticketing system app
 
-1)Clone Frontendv1 and backendv1 onto your desktop
+1) Clone Frontendv1 and backendv1 onto your desktop
 
 2) BACKEND
 
