@@ -1,39 +1,49 @@
 import React, { Component } from 'react';
-import injectTapEventPlugin from 'react-tap-event-plugin';
-import './App.css';
-import Loginscreen from './Loginscreen'
-// Needed for onTouchTap
-// http://stackoverflow.com/a/34015469/988941
-injectTapEventPlugin();
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+//import {HashRouter as Router,Route, Link, NavLink} from 'react-router-dom';
+import SignUpForm from './pages/SignUpForm';
+import SignInForm from './pages/SignInForm';
+import Ticktform from './pages/Ticktform';
+import trackticket from './pages/trackticket';
 
+import './App.css';
 
 class App extends Component {
-  constructor(props){
-    super(props);
-    this.state={
-      loginPage:[],
-      uploadScreen:[]
-    }
-  }
-  componentWillMount(){
-    var loginPage =[];
-    loginPage.push(<Loginscreen parentContext={this}/>);
-    this.setState({
-                  loginPage:loginPage
-                    })
-  }
   render() {
     return (
-      <div className="App">
-        {this.state.loginPage}
-        {this.state.uploadScreen}
-      </div>
-    );
+    		<div className ="App">
+    			<div className= "App__Aside"></div>
+    			<div className=" App__Form">
+          			<BrowserRouter>
+    					<Switch>
+    						<Route path = "/sign-in" component = {SignInForm} exact/>
+    						<Route path ="/Sign-Up" component ={SignUpForm} />
+    						<Route path = "/Ticktform" component ={Ticktform}/>
+    						<Route path ="/trackticket" component ={trackticket}/>
+    					</Switch>
+
+    				</BrowserRouter>
+    			</div>
+    		</div>
+
+
+
+          );
   }
 }
 
-const style = {
-  margin: 15,
-};
-
 export default App;
+
+
+/*
+
+
+          	<BrowserRouter>
+    		<Switch>
+    			<Route path = "/" component = {SignInForm} exact/>
+    			<Route path ="/SingUp" component ={SignUpForm} />
+    			<Route path = "/Ticktform" component ={Ticktform}/>
+    		</Switch>
+
+    	</BrowserRouter>
+*/
