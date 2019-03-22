@@ -7,12 +7,34 @@ class SignInForm extends Component {
 
         this.state = {
             email: '',
-            password: ''
+            password: '',
+            errors:{}
+
         };
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
+        handleValidation(){
+        let email = this.state.email;
+        let password = this.state.password;
+        let errors = {};
+        let formIsValid = true;
+
+        //Name
+        if(!email){
+           formIsValid = false;
+           errors["email"] = "Cannot be empty";
+        }
+
+        if (!password) {
+            formIsValid= false;
+            errors["password"] = "Cannot be empty";
+        }
+
+       this.setState({errors: errors});
+       return formIsValid;
+   }
 
     handleChange(e) {
         let target = e.target;
@@ -31,7 +53,13 @@ class SignInForm extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        this.props.history.push('/ticktform');
+        if (this.handleValidation()) {
+            alert("Form Submitted");
+
+            this.props.history.push('/ticktform');
+        } else{
+            alert("Form error");
+        }
 
         console.log('The form was submitted with the following data:');
         console.log(this.state);
@@ -40,6 +68,8 @@ class SignInForm extends Component {
     render() {
         return (
         <div className="FormCenter">
+            <h2> Sign In
+             </h2> 
             <form onSubmit={this.handleSubmit} className="FormFields">
             <div className="FormField">
                 <label className="FormField__Label" htmlFor="email">E-Mail Address</label>
