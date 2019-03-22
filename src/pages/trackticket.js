@@ -39,6 +39,8 @@ class trackticket extends Component {
     render() {
         return (
         <div className="FormCenter">
+            <h2> Track Ticket by ID 
+            </h2>
             <form onSubmit={this.handleSubmit} className="FormFields">
             <div className="FormField">
                 <label className="FormField__Label" htmlFor="trackingid">Tracking ID</label>

@@ -5,6 +5,7 @@ import SignUpForm from './pages/SignUpForm';
 import SignInForm from './pages/SignInForm';
 import Ticktform from './pages/Ticktform';
 import trackticket from './pages/trackticket';
+import Navigation from './Navigation';
 
 import './App.css';
 
@@ -15,13 +16,15 @@ class App extends Component {
     			<div className= "App__Aside"></div>
     			<div className=" App__Form">
           			<BrowserRouter>
-    					<Switch>
-    						<Route path = "/sign-in" component = {SignInForm} exact/>
-    						<Route path ="/Sign-Up" component ={SignUpForm} />
-    						<Route path = "/Ticktform" component ={Ticktform}/>
-    						<Route path ="/trackticket" component ={trackticket}/>
-    					</Switch>
-
+          				<div>
+          					<Navigation />
+    						<Switch>
+    							<Route path = "/sign-in" component = {SignInForm} exact/>
+    							<Route path ="/Sign-Up" component ={SignUpForm} />
+    							<Route path = "/Ticktform" component ={Ticktform}/>
+    							<Route path ="/trackticket" component ={trackticket}/>
+    						</Switch>
+    					</div>
     				</BrowserRouter>
     			</div>
     		</div>
