@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 class SignUpForm extends Component {
     constructor() {
@@ -61,9 +62,30 @@ class SignUpForm extends Component {
     handleSubmit(e) {
         e.preventDefault();
         if (this.handleValidation()) {
-            alert("Form Submitted");
+          console.log(`Form submitted:`);
+          console.log(`Todo Description: ${this.state.todo_description}`);
+          console.log(`Todo Responsible: ${this.state.todo_responsible}`);
+          console.log(`Todo Priority: ${this.state.todo_priority}`);
+          console.log(`Todo Completed: ${this.state.todo_completed}`);
 
-            this.props.history.push('/sign-in');
+          const newTodo = {
+              user_email: this.state.email,
+              user_password: this.state.password,
+              user_name: this.state.name,
+              user_company: this.state.comapny,
+              user_role: 'user',
+              user_hasAgreed: this.state.hasAgreed
+          }
+
+          axios.post('http://localhost:5000/users/add', newTodo)
+          .then(res => console.log(res.data));
+
+          this.setState({
+              todo_description: '',
+              todo_responsible: '',
+              todo_priority: '',
+              todo_completed: false
+          })
         } else{
             alert("Please Fill in all fields");
         }
@@ -93,7 +115,7 @@ class SignUpForm extends Component {
                 <label className="FormField__Label" htmlFor="company">Company Name</label>
                 <input type="company" id="company" className="FormField__Input" placeholder="Enter your comapny name" name="company" value={this.state.company} onChange={this.handleChange} />
               </div>
-              
+
 
               <div className="FormField">
                 <label className="FormField__CheckboxLabel">

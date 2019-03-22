@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+
 
 class SignInForm extends Component {
     constructor() {
@@ -69,7 +71,7 @@ class SignInForm extends Component {
         return (
         <div className="FormCenter">
             <h2> Sign In
-             </h2> 
+             </h2>
             <form onSubmit={this.handleSubmit} className="FormFields">
             <div className="FormField">
                 <label className="FormField__Label" htmlFor="email">E-Mail Address</label>
@@ -83,7 +85,7 @@ class SignInForm extends Component {
 
               <div className="FormField">
                   <button className="FormField__Button mr-20">Sign In</button> <Link to="/sign-up" className="FormField__Link">Create new account</Link></div>
-                  
+
             </form>
           </div>
         );
