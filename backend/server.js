@@ -7,6 +7,7 @@ const userRoutes = express.Router();
 const PORT = 5000;
 
 let User = require('./user.model');
+let Ticket = require('./ticket.model');
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -66,6 +67,17 @@ userRoutes.route('/update/:id').post(function(req, res) {
                 res.status(400).send("Update not possible");
             });
     });
+});
+
+userRoutes.route('/addTicket').post(function(req, res) {
+  let ticket = new Ticket(req.body);
+  ticket.save()
+      .then(ticket => {
+          res.status(200).json({'ticket': 'ticket added successfully'});
+      })
+      .catch(err => {
+          res.status(400).send('adding new ticket failed');
+      });
 });
 
 app.use('/users', userRoutes);

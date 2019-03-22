@@ -63,10 +63,6 @@ class SignUpForm extends Component {
         e.preventDefault();
         if (this.handleValidation()) {
           console.log(`Form submitted:`);
-          console.log(`Todo Description: ${this.state.todo_description}`);
-          console.log(`Todo Responsible: ${this.state.todo_responsible}`);
-          console.log(`Todo Priority: ${this.state.todo_priority}`);
-          console.log(`Todo Completed: ${this.state.todo_completed}`);
 
           const newTodo = {
               user_email: this.state.email,
@@ -81,16 +77,18 @@ class SignUpForm extends Component {
           .then(res => console.log(res.data));
 
           this.setState({
-              todo_description: '',
-              todo_responsible: '',
-              todo_priority: '',
-              todo_completed: false
+            user_email: '',
+            user_password: '',
+            user_name: '',
+            user_company: '',
+            user_role: '',
+            user_hasAgreed: false
           })
+          console.log('The form was submitted with the following data:');
+          console.log(this.state);
         } else{
             alert("Please Fill in all fields");
         }
-        console.log('The form was submitted with the following data:');
-        console.log(this.state);
     }
 
     render() {
