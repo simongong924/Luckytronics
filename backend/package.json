@@ -1,25 +1,18 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "description": "backend for app",
-  "main": "server.js",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "test": "na"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "na"
-  },
-  "keywords": [
-    "na"
-  ],
-  "author": "simon gong",
-  "license": "UNLICENSED",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.3",
+    "cors": "^2.8.5",
     "express": "^4.16.4",
-    "mongodb": "^3.1.13",
-    "mongoose": "^5.4.19",
-    "morgan": "^1.9.1"
+    "mongoose": "^5.4.19"
   }
 }

@@ -1,90 +1,75 @@
-const mongoose = require("mongoose");
-const express = require("express");
-const bodyParser = require("body-parser");
-const logger = require("morgan");
-const Data = require("./data");
-
-const API_PORT = 3001;
+const express = require('express');
 const app = express();
-const router = express.Router();
+const bodyParser = require('body-parser');
+const cors = require('cors');
+const mongoose = require('mongoose');
+const todoRoutes = express.Router();
+const PORT = 4000;
 
-// this is our MongoDB database
-// to do:
-// read password from local staic file
-const dbRoute = "mongodb+srv://admin_simon:1q2w3e4r@luckytronicsdb-cdpf5.mongodb.net/test?retryW";
-var url = "mongodb+srv://admin_simon:1q2w3e4r@luckytronicsdb-cdpf5.mongodb.net/test";
+let Todo = require('./todo.model');
 
-// connects our back end code with the database
-mongoose.connect(
-  dbRoute,
-  { useNewUrlParser: true }
-);
-
-let db = mongoose.connection;
-
-db.once("open", () => console.log("connected to the database"));
-
-// checks if connection with the database is successful
-db.on("error", console.error.bind(console, "MongoDB connection error:"));
-
-// (optional) only made for logging and
-// bodyParser, parses the request body to be a readable json format
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cors());
 app.use(bodyParser.json());
-app.use(logger("dev"));
 
-// this is our get method
-// this method fetches all available data in our database
-router.get("/getData", (req, res) => {
-  Data.find((err, data) => {
-    if (err) return res.json({ success: false, error: err });
-    return res.json({ success: true, data: data });
-  });
-});
+const dbUrl = "mongodb+srv://admin_simon:1q2w3e4r@luckytronicsdb-cdpf5.mongodb.net/user"
 
-// this is our update method
-// this method overwrites existing data in our database
-router.post("/updateData", (req, res) => {
-  const { id, update } = req.body;
-  Data.findOneAndUpdate(id, update, err => {
-    if (err) return res.json({ success: false, error: err });
-    return res.json({ success: true });
-  });
-});
+mongoose.connect(dbUrl, { useNewUrlParser: true });
+const connection = mongoose.connection;
 
-// this is our delete method
-// this method removes existing data in our database
-router.delete("/deleteData", (req, res) => {
-  const { id } = req.body;
-  Data.findOneAndDelete(id, err => {
-    if (err) return res.send(err);
-    return res.json({ success: true });
-  });
-});
+connection.once('open', function() {
+    console.log("MongoDB database connection established successfully");
+})
 
-// this is our create methid
-// this method adds new data in our database
-router.post("/putData", (req, res) => {
-  let data = new Data();
 
-  const { id, message } = req.body;
-
-  if ((!id && id !== 0) || !message) {
-    return res.json({
-      success: false,
-      error: "INVALID INPUTS"
+todoRoutes.route('/').get(function(req, res) {
+    Todo.find(function(err, todos) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.json(todos);
+        }
     });
-  }
-  data.message = message;
-  data.id = id;
-  data.save(err => {
-    if (err) return res.json({ success: false, error: err });
-    return res.json({ success: true });
-  });
 });
 
-// append /api for our http requests
-app.use("/api", router);
+todoRoutes.route('/:id').get(function(req, res) {
+    let id = req.params.id;
+    Todo.findById(id, function(err, todo) {
+        res.json(todo);
+    });
+});
 
-// launch our backend into a port
-app.listen(API_PORT, () => console.log(`LISTENING ON PORT ${API_PORT}`));
+todoRoutes.route('/add').post(function(req, res) {
+    let todo = new Todo(req.body);
+    todo.save()
+        .then(todo => {
+            res.status(200).json({'todo': 'todo added successfully'});
+        })
+        .catch(err => {
+            res.status(400).send('adding new todo failed');
+        });
+});
+
+todoRoutes.route('/update/:id').post(function(req, res) {
+    Todo.findById(req.params.id, function(err, todo) {
+        if (!todo)
+            res.status(404).send('data is not found');
+        else
+            todo.todo_description = req.body.todo_description;
+            todo.todo_responsible = req.body.todo_responsible;
+            todo.todo_priority = req.body.todo_priority;
+            todo.todo_completed = req.body.todo_completed;
+
+            todo.save().then(todo => {
+                res.json('Todo updated');
+            })
+            .catch(err => {
+                res.status(400).send("Update not possible");
+            });
+    });
+});
+
+app.use('/todos', todoRoutes);
+
+app.listen(PORT, function() {
+    console.log("Server is running on Port: " + PORT);
+});
