@@ -6,7 +6,7 @@ import SignInForm from './pages/SignInForm';
 import Ticktform from './pages/Ticktform';
 import trackticket from './pages/trackticket';
 import Navigation from './Navigation';
-
+import error from './error'
 import './App.css';
 
 class App extends Component {
@@ -23,6 +23,7 @@ class App extends Component {
     							<Route path ="/Sign-Up" component ={SignUpForm} />
     							<Route path = "/Ticktform" component ={Ticktform}/>
     							<Route path ="/trackticket" component ={trackticket}/>
+    							<Route component ={error} />
     						</Switch>
     					</div>
     				</BrowserRouter>
