@@ -1,0 +1,68 @@
+[
+  {
+    "id": 1,
+    "from": "Holly Anderson",
+    "fromAddress": "test@foofoo.com",
+    "subject": "Toaster doesn't work",
+    "dtSent": "11/8/15",
+    "read": false,
+    "body": "Hello my toaster somehow makes my bread more raw. Please help."
+  },
+  {
+    "id": 2,
+    "from": "Charles Wright",
+    "fromAddress": "test@testdomain.com",
+    "subject": "Wings not straight",
+    "dtSent": "12/8/15",
+    "read": false,
+    "body": "Need help for flight",
+    "attachment": false
+  },
+  {
+    "id": 3,
+    "from": "Bob Ross",
+    "fromAddress": "test@testbar.com",
+    "subject": "Happy little accident",
+    "dtSent": "12/8/15",
+    "read": true,
+    "body": "Hi there could use a new brush",
+    "attachment": false
+  },
+  {
+    "id": 4,
+    "from": "Sarah Connor",
+    "fromAddress": "test@domain.com",
+    "subject": "T1000 acting funny",
+    "dtSent": "8/8/15",
+    "read": false,
+    "body": "It told me to chill ffs",
+    "priority": 1
+  },
+  {
+    "id": 4,
+    "from": "Marty Mcfly",
+    "fromAddress": "test@mail.com",
+    "subject": "Can't get 1.21GW",
+    "dtSent": "4/6/15",
+    "read": true,
+    "body": "Great scott this is heavy"
+  },
+  {
+    "id": 6,
+    "from": "Harrison Ford",
+    "fromAddress": "test@domain.com",
+    "subject": "Door Malfunction",
+    "dtSent": "2/8/15",
+    "read": true,
+    "body": "They closed a fucking door on me"
+  },
+  {
+    "id": 7,
+    "from": "Conan Doyle",
+    "fromAddress": "test@test.com",
+    "subject": "No Shit Sherlock",
+    "dtSent": "30/7/15",
+    "read": true,
+    "body": "Seriously?"
+  }
+]
