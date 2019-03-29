@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 class SignUpForm extends Component {
     constructor() {
@@ -61,14 +62,34 @@ class SignUpForm extends Component {
     handleSubmit(e) {
         e.preventDefault();
         if (this.handleValidation()) {
-            alert("Form Submitted");
+          console.log(`Form submitted:`);
 
-            this.props.history.push('/sign-in');
+          const newTodo = {
+              user_email: this.state.email,
+              user_password: this.state.password,
+              user_name: this.state.name,
+              user_company: this.state.comapny,
+              user_role: 'user',
+              user_hasAgreed: this.state.hasAgreed
+          }
+
+          axios.post('http://localhost:5000/users/add', newTodo)
+          .then(res => console.log(res.data));
+
+          this.setState({
+            user_email: '',
+            user_password: '',
+            user_name: '',
+            user_company: '',
+            user_role: '',
+            user_hasAgreed: false
+          })
+          console.log('The form was submitted with the following data:');
+          console.log(this.state);
+          alert("User created successfully!");
         } else{
             alert("Please Fill in all fields");
         }
-        console.log('The form was submitted with the following data:');
-        console.log(this.state);
     }
 
     render() {
@@ -93,14 +114,6 @@ class SignUpForm extends Component {
                 <label className="FormField__Label" htmlFor="company">Company Name</label>
                 <input type="company" id="company" className="FormField__Input" placeholder="Enter your comapny name" name="company" value={this.state.company} onChange={this.handleChange} />
               </div>
-              
-
-              <div className="FormField">
-                <label className="FormField__CheckboxLabel">
-                    <input className="FormField__Checkbox" type="checkbox" name="hasAgreed" value={this.state.hasAgreed} onChange={this.handleChange} /> I agree all statements in <a href="" className="FormField__TermsLink">terms of service</a>
-                </label>
-              </div>
-
               <div className="FormField">
                   <button className="FormField__Button mr-20">Sign Up</button> <Link to="/sign-in" className="FormField__Link">I'm already member</Link>
               </div>
