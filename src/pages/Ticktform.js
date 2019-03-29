@@ -81,6 +81,7 @@ class Ticktform extends Component {
           })
           console.log('The form was submitted with the following data:');
           console.log(this.state);
+          alert("Ticket created successfully!");
         }
         else{
         	alert("Please Fill in all fields");
