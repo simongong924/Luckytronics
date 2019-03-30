@@ -4,6 +4,9 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const userRoutes = express.Router();
+const jwt = require('jsonwebtoken');
+const cookieParser = require('cookie-parser');
+const withAuth = require('./middleware');
 const PORT = 5000;
 
 let User = require('./user.model');
@@ -11,7 +14,10 @@ let Ticket = require('./ticket.model');
 
 app.use(cors());
 app.use(bodyParser.json());
+app.use(cookieParser());
 
+//// TODO:  make local secrets
+const secret = 'mysecretsshhh';
 const dbUrl = "mongodb+srv://admin_simon:1q2w3e4r@luckytronicsdb-cdpf5.mongodb.net/user"
 
 mongoose.connect(dbUrl, { useNewUrlParser: true });
@@ -21,6 +27,10 @@ connection.once('open', function() {
     console.log("MongoDB database connection established successfully");
 })
 
+
+app.get('/checkToken', withAuth, function(req, res) {
+  res.sendStatus(200);
+});
 
 userRoutes.route('/').get(function(req, res) {
     User.find(function(err, users) {
@@ -48,6 +58,47 @@ userRoutes.route('/add').post(function(req, res) {
         .catch(err => {
             res.status(400).send('adding new user failed');
         });
+});
+
+userRoutes.route('/authenticate').post(function(req, res) {
+  const { user_email, user_password } = req.body;
+  console.log(user_email);
+  User.findOne({user_email}, function(err, user) {
+    if (err) {
+      console.error(err);
+      res.status(500)
+        .json({
+        error: 'Internal error please try again'
+      });
+    } else if (!user) {
+      res.status(401)
+        .json({
+          error: 'Incorrect email or password'
+        });
+    } else {
+      user.isCorrectPassword(user_password, function(err, same) {
+        if (err) {
+          res.status(500)
+            .json({
+              error: 'Internal error please try again'
+          });
+        } else if (!same) {
+          res.status(401)
+            .json({
+              error: 'Incorrect email or password'
+          });
+        } else {
+          // Issue token
+          const payload = { user_email };
+          const token = jwt.sign(payload, secret, {
+            expiresIn: '1h'
+          });
+          res.cookie('token', token, { httpOnly: true })
+            .sendStatus(200);
+        }
+      });
+    }
+  });
 });
 
 userRoutes.route('/update/:id').post(function(req, res) {

@@ -47,25 +47,42 @@ class SignInForm extends Component {
           [name]: value
         });
     }
-    handleClick() {
-    this.setState(state => ({
-      isToggleOn: !state.isToggleOn
-    }));
-  }
+
+  //   handleClick() {
+  //   this.setState(state => ({
+  //     isToggleOn: !state.isToggleOn
+  //   }));
+  // }
 
     handleSubmit(e) {
         e.preventDefault();
         if (this.handleValidation()) {
-            alert("Form Submitted");
+          const newSign = {
+              user_email: this.state.email,
+              user_password: this.state.password
+          }
 
-            this.props.history.push('/ticktform');
+          axios.post('http://localhost:5000/users/authenticate', newSign)
+          .then(res => {
+            if (res.status === 200) {
+               this.props.history.push('ticktform');
+               alert("User Signed In Successfully");
+             } else {
+               const error = new Error(res.error);
+               throw error;
+             }
+           })
+           .catch(err => {
+             console.error(err);
+             alert('Error logging in please try again');
+          });
         } else{
             alert("Form error");
         }
 
-        console.log('The form was submitted with the following data:');
         console.log(this.state);
     }
+
 
     render() {
         return (
