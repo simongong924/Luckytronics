@@ -5,14 +5,22 @@ import SignUpForm from './pages/SignUpForm';
 import SignInForm from './pages/SignInForm';
 import Ticktform from './pages/Ticktform';
 import TrackTicket from './pages/trackticket';
+import homepageUser from './pages/homepageUser';
 import Navigation from './Navigation';
-
+import Table1 from'./pages/table1';
 import './App.css';
 import logo from "./logo.png";
+
+  var data = [
+  {id: 1, name: 'Gob', value: '2'},
+  {id: 2, name: 'Buster', value: '5'},
+  {id: 3, name: 'George Michael', value: '4'}
+];
 
 class App extends Component {
   render() {
     return (
+      <div id="parent">
       <Router>
         <div className="container">
 
@@ -35,6 +43,10 @@ class App extends Component {
                 <li className="navbar-item">
                   <Link to="/track" className="nav-link">Track Ticket</Link>
                 </li>
+                <li className="navbar-item">
+                  <Link to="/homepageUser" className="nav-link">Home</Link>
+                </li>
+                
               </ul>
             </div>
           </nav>
@@ -43,8 +55,11 @@ class App extends Component {
           <Route path="/signup" component={SignUpForm} />
           <Route path="/create" component={Ticktform} />
           <Route path="/track" component={TrackTicket} />
+          <Route path="/homepageUser" component={homepageUser} />
         </div>
       </Router>
+
+      </div>
     );
   }
 }

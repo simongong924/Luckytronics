@@ -58,7 +58,7 @@ class SignInForm extends Component {
         if (this.handleValidation()) {
             alert("Form Submitted");
 
-            this.props.history.push('/ticktform');
+            this.props.history.push('/homepageUser');
         } else{
             alert("Form error");
         }
