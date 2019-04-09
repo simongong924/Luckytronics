@@ -8,24 +8,25 @@ import Adapter from 'enzyme-adapter-react-16';
 //import { ENGINE_METHOD_STORE } from 'constants';
 configure({ adapter: new Adapter() });
 
-describe('<SignUnForm />',() => {
-    it('has 5 inputs', () => {
-        const SignUp = shallow(<SignUpForm />);
-        expect(SignUp.find('input').length).toEqual(5);
-      });
-
-    /*it('checks email',() =>{
-        const SignUp = shallow(<SignUpForm />);
-        
-        SignUp.setState({
-            email: '1',
-            password: '123',
-            name: 'jane',
-            company: 'coe',
-            hasAgreed: true
-        })
-    });*/
+describe('<SignUpForm />',() => {
+/*
+it('has 2 inputs', () => {
+const editor = shallow(<SignInForm />);
+expect(editor.find('input').length).toEqual(2);
 });
+*/
+it("snaps",() =>{
+const component = renderer.create(
+<SignUpForm />
+);
+let tree = component.toJSON();
+
+ expect(tree).toMatchSnapshot();
+});
+
+
+});
+
 
 
 /*

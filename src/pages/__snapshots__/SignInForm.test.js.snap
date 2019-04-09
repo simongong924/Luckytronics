@@ -1,0 +1,64 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SignInForm /> snaps 1`] = `
+<div
+  className="FormCenter"
+>
+  <h2>
+     Sign In
+  </h2>
+  <form
+    className="FormFields"
+    onSubmit={[Function]}
+  >
+    <div
+      className="FormField"
+    >
+      <label
+        className="FormField__Label"
+        htmlFor="email"
+      >
+        E-Mail Address
+      </label>
+      <input
+        className="FormField__Input"
+        id="email"
+        name="email"
+        onChange={[Function]}
+        placeholder="Enter your email"
+        type="email"
+        value=""
+      />
+    </div>
+    <div
+      className="FormField"
+    >
+      <label
+        className="FormField__Label"
+        htmlFor="password"
+      >
+        Password
+      </label>
+      <input
+        className="FormField__Input"
+        id="password"
+        name="password"
+        onChange={[Function]}
+        placeholder="Enter your password"
+        type="password"
+        value=""
+      />
+    </div>
+    <div
+      className="FormField"
+    >
+      <button
+        className="FormField__Button mr-20"
+      >
+        Sign In
+      </button>
+       
+    </div>
+  </form>
+</div>
+`;

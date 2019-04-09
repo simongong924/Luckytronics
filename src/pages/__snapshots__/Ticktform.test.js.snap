@@ -1,0 +1,117 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Ticktform /> snaps 1`] = `
+<div
+  className="FormCenter"
+>
+  <h2>
+     Create a ticket 
+  </h2>
+  <form
+    className="FormFields"
+    onSubmit={[Function]}
+  >
+    <div
+      className="FormField"
+    >
+      <label
+        className="FormField__Label"
+        htmlFor="name"
+      >
+        Full Name
+      </label>
+      <input
+        className="FormField__Input"
+        id="name"
+        name="name"
+        onChange={[Function]}
+        placeholder="Enter your full name"
+        type="text"
+        value=""
+      />
+    </div>
+    <div
+      className="FormField"
+    >
+      <label
+        className="FormField__Label"
+        htmlFor="subject"
+      >
+        Subject
+      </label>
+      <input
+        className="FormField__Input"
+        id="subject"
+        name="subject"
+        onChange={[Function]}
+        placeholder="Enter a Subject"
+        type="subject"
+        value={undefined}
+      />
+    </div>
+    <div
+      className="FormField"
+    >
+      <label
+        className="FormField__Label"
+        htmlFor="details"
+      >
+        Details
+      </label>
+      <textarea
+        className="FormField__Input"
+        id="details"
+        name="details"
+        onChange={[Function]}
+        placeholder="Enter your queries here"
+        type="details"
+        value={undefined}
+      />
+    </div>
+    <div
+      className="FormField"
+    >
+      <label
+        className="FormField__Label"
+        htmlFor="email"
+      >
+        E-Mail Address (if you have not signed in)
+      </label>
+      <input
+        className="FormField__Input"
+        id="email"
+        name="email"
+        onChange={[Function]}
+        placeholder="Enter your email "
+        type="email"
+        value=""
+      />
+    </div>
+    <div
+      className="FormField"
+    >
+      <label
+        className="FormField__CheckboxLabel"
+      >
+        <input
+          className="FormField__Checkbox"
+          name="hasAgreed"
+          onChange={[Function]}
+          type="checkbox"
+          value={false}
+        />
+         I agree to receive notifications
+      </label>
+    </div>
+    <div
+      className="FormField"
+    >
+      <button
+        className="FormField__Button mr-20"
+      >
+        Submit
+      </button>
+    </div>
+  </form>
+</div>
+`;

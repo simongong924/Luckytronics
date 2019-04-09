@@ -2,149 +2,157 @@
 
 exports[`first snapshot test 1`] = `
 <div
-  className="container"
+  id="parent"
 >
-  <nav
-    className="navbar navbar-expand-lg navbar-light bg-light"
+  <div
+    className="container"
   >
-    <a
-      className="navbar-brand"
-      href="https://codingthesmartway.com"
-      target="_blank"
+    <nav
+      className="navbar navbar-expand-lg navbar-light bg-light"
     >
-      <img
-        alt="CodingTheSmartWay.com"
-        height="30"
-        src="logo.png"
-        width="30"
-      />
-    </a>
-    <a
-      className="navbar-brand"
-      href="/"
-      onClick={[Function]}
-    >
-      Ticket System
-    </a>
-    <div
-      className="collpase nav-collapse"
-    >
-      <ul
-        className="navbar-nav mr-auto"
+      <a
+        className="navbar-brand"
+        href="https://codingthesmartway.com"
+        target="_blank"
       >
-        <li
-          className="navbar-item"
+        <img
+          alt="CodingTheSmartWay.com"
+          height="30"
+          src="logo.png"
+          width="30"
+        />
+      </a>
+      <a
+        className="navbar-brand"
+        href="/"
+        onClick={[Function]}
+      >
+        Ticket System
+      </a>
+      <div
+        className="collpase nav-collapse"
+      >
+        <ul
+          className="navbar-nav mr-auto"
         >
-          <a
-            className="nav-link"
-            href="/"
-            onClick={[Function]}
+          <li
+            className="navbar-item"
+          >
+            <a
+              className="nav-link"
+              href="/"
+              onClick={[Function]}
+            >
+              Sign In
+            </a>
+          </li>
+          <li
+            className="navbar-item"
+          >
+            <a
+              className="nav-link"
+              href="/signup"
+              onClick={[Function]}
+            >
+              Sign Up
+            </a>
+          </li>
+          <li
+            className="navbar-item"
+          >
+            <a
+              className="nav-link"
+              href="/create"
+              onClick={[Function]}
+            >
+              Create Ticket
+            </a>
+          </li>
+          <li
+            className="navbar-item"
+          >
+            <a
+              className="nav-link"
+              href="/track"
+              onClick={[Function]}
+            >
+              Track Ticket
+            </a>
+          </li>
+          <li
+            className="navbar-item"
+          >
+            <a
+              className="nav-link"
+              href="/homepageUser"
+              onClick={[Function]}
+            >
+              Home
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div
+      className="FormCenter"
+    >
+      <h2>
+         Sign In
+      </h2>
+      <form
+        className="FormFields"
+        onSubmit={[Function]}
+      >
+        <div
+          className="FormField"
+        >
+          <label
+            className="FormField__Label"
+            htmlFor="email"
+          >
+            E-Mail Address
+          </label>
+          <input
+            className="FormField__Input"
+            id="email"
+            name="email"
+            onChange={[Function]}
+            placeholder="Enter your email"
+            type="email"
+            value=""
+          />
+        </div>
+        <div
+          className="FormField"
+        >
+          <label
+            className="FormField__Label"
+            htmlFor="password"
+          >
+            Password
+          </label>
+          <input
+            className="FormField__Input"
+            id="password"
+            name="password"
+            onChange={[Function]}
+            placeholder="Enter your password"
+            type="password"
+            value=""
+          />
+        </div>
+        <div
+          className="FormField"
+        >
+          <button
+            className="FormField__Button mr-20"
           >
             Sign In
-          </a>
-        </li>
-        <li
-          className="navbar-item"
-        >
-          <a
-            className="nav-link"
-            href="/signup"
-            onClick={[Function]}
-          >
-            Sign Up
-          </a>
-        </li>
-        <li
-          className="navbar-item"
-        >
-          <a
-            className="nav-link"
-            href="/create"
-            onClick={[Function]}
-          >
-            Create Ticket
-          </a>
-        </li>
-        <li
-          className="navbar-item"
-        >
-          <a
-            className="nav-link"
-            href="/track"
-            onClick={[Function]}
-          >
-            Track Ticket
-          </a>
-        </li>
-      </ul>
+          </button>
+           
+        </div>
+      </form>
     </div>
-  </nav>
-  <div
-    className="FormCenter"
-  >
-    <h2>
-       Sign In
-    </h2>
-    <form
-      className="FormFields"
-      onSubmit={[Function]}
-    >
-      <div
-        className="FormField"
-      >
-        <label
-          className="FormField__Label"
-          htmlFor="email"
-        >
-          E-Mail Address
-        </label>
-        <input
-          className="FormField__Input"
-          id="email"
-          name="email"
-          onChange={[Function]}
-          placeholder="Enter your email"
-          type="email"
-          value=""
-        />
-      </div>
-      <div
-        className="FormField"
-      >
-        <label
-          className="FormField__Label"
-          htmlFor="password"
-        >
-          Password
-        </label>
-        <input
-          className="FormField__Input"
-          id="password"
-          name="password"
-          onChange={[Function]}
-          placeholder="Enter your password"
-          type="password"
-          value=""
-        />
-      </div>
-      <div
-        className="FormField"
-      >
-        <button
-          className="FormField__Button mr-20"
-        >
-          Sign In
-        </button>
-         
-        <a
-          className="FormField__Link"
-          href="/sign-up"
-          onClick={[Function]}
-        >
-          Create new account
-        </a>
-      </div>
-    </form>
   </div>
 </div>
 `;

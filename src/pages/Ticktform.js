@@ -119,7 +119,7 @@ class Ticktform extends Component {
               </div>
 
               <div className="FormField">
-                  <button className="FormField__Button mr-20">Submit</button> <Link to="/trackticket" className="FormField__Link">track new ticket</Link>
+                  <button className="FormField__Button mr-20">Submit</button> 
               </div>
             </form>
           </div>

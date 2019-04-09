@@ -1,0 +1,101 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SignUpForm /> snaps 1`] = `
+<div
+  className="FormCenter"
+>
+  <h2>
+     Register
+  </h2>
+  <form
+    className="FormFields"
+    onSubmit={[Function]}
+  >
+    <div
+      className="FormField"
+    >
+      <label
+        className="FormField__Label"
+        htmlFor="name"
+      >
+        Full Name
+      </label>
+      <input
+        className="FormField__Input"
+        id="name"
+        name="name"
+        onChange={[Function]}
+        placeholder="Enter your full name"
+        type="text"
+        value=""
+      />
+    </div>
+    <div
+      className="FormField"
+    >
+      <label
+        className="FormField__Label"
+        htmlFor="password"
+      >
+        Password
+      </label>
+      <input
+        className="FormField__Input"
+        id="password"
+        name="password"
+        onChange={[Function]}
+        placeholder="Enter your password"
+        type="password"
+        value=""
+      />
+    </div>
+    <div
+      className="FormField"
+    >
+      <label
+        className="FormField__Label"
+        htmlFor="email"
+      >
+        E-Mail Address
+      </label>
+      <input
+        className="FormField__Input"
+        id="email"
+        name="email"
+        onChange={[Function]}
+        placeholder="Enter your email"
+        type="email"
+        value=""
+      />
+    </div>
+    <div
+      className="FormField"
+    >
+      <label
+        className="FormField__Label"
+        htmlFor="company"
+      >
+        Company Name
+      </label>
+      <input
+        className="FormField__Input"
+        id="company"
+        name="company"
+        onChange={[Function]}
+        placeholder="Enter your comapny name"
+        type="company"
+        value=""
+      />
+    </div>
+    <div
+      className="FormField"
+    >
+      <button
+        className="FormField__Button mr-20"
+      >
+        Sign Up
+      </button>
+    </div>
+  </form>
+</div>
+`;
