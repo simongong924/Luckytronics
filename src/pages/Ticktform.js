@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+//import Select from './select/Select';
 
 class Ticktform extends Component {
     constructor() {
@@ -13,6 +14,8 @@ class Ticktform extends Component {
             email: '',
             hasAgreed: false
         };
+
+        subjectOptions : ["Bug","Asset","Access Request","Job Application","Others"];
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -84,8 +87,8 @@ class Ticktform extends Component {
           alert("Ticket created successfully!");
         }
         else{
-        	alert("Please Fill in all fields");
-        }
+        	alert("Please Fill in all fields")
+;        }
     }
 
     render() {
@@ -97,13 +100,21 @@ class Ticktform extends Component {
                 <label className="FormField__Label" htmlFor="name">Full Name</label>
                 <input type="text" id="name" className="FormField__Input" placeholder="Enter your full name" name="name" value={this.state.name} onChange={this.handleChange} />
               </div>
-              <div className="FormField">
-                <label className="FormField__Label" htmlFor="subject">Subject</label>
-                <input type="subject" id="subject" className="FormField__Input" placeholder="Enter a Subject" name="subject" value={this.state.Subject} onChange={this.handleChange} />
-              </div>
+              <div className = "FormField">
+                <label>
+                  Select a subject : 
+
+                  <select value = {this.state.value} onChange ={this.handleChange}>
+                  <option value ={"Bug"}>Bug</option>
+                  <option value ={"Assets"}>Assets</option>
+                  <option value ={"Application"}>Application</option>
+                  <option value ={"Others"}>Others</option>
+                  </select>
+                </label>
+                </div>
               <div className="FormField">
                 <label className="FormField__Label" htmlFor="details">Details</label>
-                <textarea type="details" id="details" className="FormField__Input" placeholder="Enter your queries here" name="details" value={this.state.Details} onChange={this.handleChange} />
+                <textarea type="details" id="details"  placeholder="Enter your queries here" name="details" value={this.state.Details} onChange={this.handleChange} />
               </div>
 
               <div className="FormField">
