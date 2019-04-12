@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Ticktform /> snaps 1`] = `
+exports[`<Ticktform /> renders without error 1`] = `
 <div
   className="FormCenter"
 >
@@ -31,23 +31,36 @@ exports[`<Ticktform /> snaps 1`] = `
       />
     </div>
     <div
-      className="FormField"
+      className="FormField1"
     >
-      <label
-        className="FormField__Label"
-        htmlFor="subject"
-      >
-        Subject
+      <label>
+        Select a subject :
+        <select
+          onChange={[Function]}
+          value={undefined}
+        >
+          <option
+            value="Bug"
+          >
+            Bug
+          </option>
+          <option
+            value="Assets"
+          >
+            Assets
+          </option>
+          <option
+            value="Application"
+          >
+            Application
+          </option>
+          <option
+            value="Others"
+          >
+            Others
+          </option>
+        </select>
       </label>
-      <input
-        className="FormField__Input"
-        id="subject"
-        name="subject"
-        onChange={[Function]}
-        placeholder="Enter a Subject"
-        type="subject"
-        value={undefined}
-      />
     </div>
     <div
       className="FormField"
@@ -59,7 +72,6 @@ exports[`<Ticktform /> snaps 1`] = `
         Details
       </label>
       <textarea
-        className="FormField__Input"
         id="details"
         name="details"
         onChange={[Function]}

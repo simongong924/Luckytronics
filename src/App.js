@@ -6,7 +6,7 @@ import SignInForm from './pages/SignInForm';
 import Ticktform from './pages/Ticktform';
 import TrackTicket from './pages/trackticket';
 import homepageUser from './pages/homepageUser';
-import Navigation from './Navigation';
+//import Navigation from './Navigation';
 import Table1 from'./pages/table1';
 import './App.css';
 import logo from "./logo.png";

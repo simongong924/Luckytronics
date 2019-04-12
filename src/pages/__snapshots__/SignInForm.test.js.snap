@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<SignInForm /> snaps 1`] = `
+exports[`<SignInForm /> renders without error 1`] = `
 <div
   className="FormCenter"
 >
