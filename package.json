@@ -31,7 +31,6 @@
     "deploy": "gh-pages -d build",
     "dev": "concurrently \"cd backend nodemon server\" \"npm run client\""
   },
-  "proxy": "http://localhost:5000",
   "devDependencies": {
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.11.2",
