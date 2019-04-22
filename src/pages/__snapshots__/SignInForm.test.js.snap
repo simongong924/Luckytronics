@@ -60,5 +60,10 @@ exports[`<SignInForm /> renders without error 1`] = `
        
     </div>
   </form>
+  <div
+    data-onloadcallbackname="onloadCallback"
+    data-verifycallbackname="verifyCallback"
+    id="g-recaptcha"
+  />
 </div>
 `;

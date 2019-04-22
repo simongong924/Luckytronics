@@ -94,8 +94,15 @@ it('submit empty form, assert error',()=>{
 	//form.simulate('submit');
 	expect(wrapper.instance().handleSubmit).toHaveBeenCalledTimes(1);
 */});
+/*
 it('submit legit form, no error',()=>{
 	//spy = jest.fn();
+	const credentials ={
+		name:'john',
+		subject :'Bug',
+		details:'coding sux',
+		hasAgreed: 'true'
+	}
 	const props ={
 		name:'john',
 		subject :'Bug',
@@ -108,9 +115,14 @@ it('submit legit form, no error',()=>{
 	wrapper.update();
 	//wrapper.find('button').simulate('click');
 	const form = wrapper.find('form');
+
+	const nameInput = form.find('input');
+	wrapper.find('#name').simulate('change',{target:{value:'john'}});
+	//nameInput.simulate('change',{target:{value:credentials.name}});
+	expect(wrapper.find('#name').props().value).toEqual('john');
 	const submitted = form.simulate('submit');
 	expect(wrapper.find('form').simulate('submit').handleValidation).toBeFalsy();
 
 
-});
+});*/
 });

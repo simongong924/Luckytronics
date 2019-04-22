@@ -1,28 +1,56 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { ReCaptcha } from 'react-recaptcha-google'
 
 
 class SignInForm extends Component {
     constructor() {
         super();
-
+        this.onLoadRecaptcha = this.onLoadRecaptcha.bind(this);
+        this.verifyCallback = this.verifyCallback.bind(this);
         this.state = {
             email: '',
             password: '',
-            errors:{}
+            errors:{},
+            isHuman : false
 
         };
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
-        handleValidation(){
+    componentDidMount(){
+      if (this.captchaDemo) {
+        console.log("just started");
+        this.captchaDemo.reset();
+      }
+    }
+
+    onLoadRecaptcha(){
+      if (this.captchaDemo) {
+        this.captchaDemo.reset();
+        
+      }
+    }
+
+    verifyCallback(recaptchaToken){
+      console.log(recaptchaToken," <- This is your token");
+      if (recaptchaToken) {
+        this.setState({
+          isHuman:true
+        })
+      }
+    }
+    
+
+
+    handleValidation(){
         let email = this.state.email;
         let password = this.state.password;
         let errors = {};
         let formIsValid = true;
-
+        //let isHuman = true;
         //Name
         if(!email){
            formIsValid = false;
@@ -33,6 +61,7 @@ class SignInForm extends Component {
             formIsValid= false;
             errors["password"] = "Cannot be empty";
         }
+
 
        this.setState({errors: errors});
        return formIsValid;
@@ -55,10 +84,18 @@ class SignInForm extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
+        if (!this.state.isHuman) {
+          alert('verify captcha');
+        }
         if (this.handleValidation()) {
-            alert("Form Submitted");
+          if (this.state.isHuman) {
 
-            this.props.history.push('/homepageUser');
+              alert("Form Submitted");
+
+              this.props.history.push('/homepageUser'); 
+          
+          }
+          
         } else{
             alert("Form error");
         }
@@ -85,8 +122,16 @@ class SignInForm extends Component {
 
               <div className="FormField">
                   <button className="FormField__Button mr-20">Sign In</button> </div>
-
+             <ReCaptcha 
+              sitekey="6Ld_Y58UAAAAANxW9B7B46ZthRasoC1Fqo3LdtcG"
+              render="explicit"
+              size="normal"
+              onloadCallback={this.onLoadRecaptcha}
+              verifyCallback={this.verifyCallback}
+            />  
             </form>
+  
+           
           </div>
         );
     }

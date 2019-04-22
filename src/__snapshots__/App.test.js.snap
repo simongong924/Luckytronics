@@ -152,6 +152,11 @@ exports[`first snapshot test 1`] = `
            
         </div>
       </form>
+      <div
+        data-onloadcallbackname="onloadCallback"
+        data-verifycallbackname="verifyCallback"
+        id="g-recaptcha"
+      />
     </div>
   </div>
 </div>

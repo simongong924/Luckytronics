@@ -1,18 +1,24 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+
+import {ReCaptcha} from 'react-recaptcha-google'
 //import Select from './select/Select';
 
 class Ticktform extends Component {
     constructor() {
         super();
 
+        this.onLoadRecaptcha = this.onLoadRecaptcha.bind(this);
+        this.verifyCallback = this.verifyCallback.bind(this);
+        
         this.state = {
             subject: '',
             details: '',
             name: '',
             email: '',
-            hasAgreed: false
+            hasAgreed: false,
+            ishuman: false
         };
 
         subjectOptions : ["Bug","Asset","Access Request","Job Application","Others"];
@@ -20,13 +26,30 @@ class Ticktform extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
+    componentDidMount(){
+      if (this.captchaDemo) {
+        console.log("just started");
+        this.captchaDemo.reset();
+      }
+    }
+
+    onLoadRecaptcha(){
+      if (this.captchaDemo) {
+        this.captchaDemo.reset();
+        
+      }
+    }
+
+    verifyCallback(recaptchaToken){
+      console.log(recaptchaToken," <- This is your token");
+    }
+    
     handleValidation(){
         let subject = this.state.subject;
         let details = this.state.details;
         let name = this.state.name;
         let errors = {};
         let formIsValid = true;
-
         console.log(this.state);
         //Name
         if(!subject){
@@ -43,7 +66,7 @@ class Ticktform extends Component {
             formIsValid= false;
             errors["name"] = "Name cannot be empty";
         }
-
+        
        this.setState({errors: errors});
        return formIsValid;
    }
@@ -62,6 +85,7 @@ class Ticktform extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
+        if (this.state.ishuman) {
         if (this.handleValidation()) {
         	alert("ticket Submitted");
           const newTicket = {
@@ -85,9 +109,9 @@ class Ticktform extends Component {
           console.log('The form was submitted with the following data:');
           console.log(this.state);
           alert("Ticket created successfully!");
-        }
+        }}
         else{
-        	alert("Please Fill in all fields")
+        	alert("Please Fill in all fields and verify captcha")
 ;        }
     }
 
@@ -133,6 +157,14 @@ class Ticktform extends Component {
                   <button className="FormField__Button mr-20">Submit</button> 
               </div>
             </form>
+            <ReCaptcha 
+            sitekey="6Ld_Y58UAAAAANxW9B7B46ZthRasoC1Fqo3LdtcG"
+            render="explicit"
+            size="normal"
+            onloadCallback={this.onLoadRecaptcha}
+            verifyCallback={this.verifyCallback}
+            />  
+           
           </div>
         );
     }

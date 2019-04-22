@@ -1,22 +1,44 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import {ReCaptcha} from 'react-recaptcha-google'
 
 class SignUpForm extends Component {
     constructor() {
         super();
+        this.onLoadRecaptcha = this.onLoadRecaptcha.bind(this);
+        this.verifyCallback = this.verifyCallback.bind(this);
 
         this.state = {
             email: '',
             password: '',
             name: '',
             company: '',
-            hasAgreed: false
+            hasAgreed: false,
+            ishuman : false
         };
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
+    componentDidMount(){
+      if (this.captchaDemo) {
+        console.log("just started");
+        this.captchaDemo.reset();
+      }
+    }
+
+    onLoadRecaptcha(){
+      if (this.captchaDemo) {
+        this.captchaDemo.reset();
+        
+      }
+    }
+
+    verifyCallback(recaptchaToken){
+      console.log(recaptchaToken," <- This is your token");
+    }
+    
     handleValidation(){
         let email = this.state.email;
         let password = this.state.password;
@@ -61,6 +83,7 @@ class SignUpForm extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
+        if (this.state.ishuman) {
         if (this.handleValidation()) {
           console.log(`Form submitted:`);
 
@@ -87,8 +110,8 @@ class SignUpForm extends Component {
           console.log('The form was submitted with the following data:');
           console.log(this.state);
           alert("User created successfully!");
-        } else{
-            alert("Please Fill in all fields");
+        }} else{
+            alert("Please Fill in all fields and verify captcha");
         }
     }
 
@@ -118,6 +141,13 @@ class SignUpForm extends Component {
                   <button className="FormField__Button mr-20">Sign Up</button> 
               </div>
             </form>
+            <ReCaptcha 
+              sitekey="6Ld_Y58UAAAAANxW9B7B46ZthRasoC1Fqo3LdtcG"
+              render="explicit"
+              size="normal"
+              onloadCallback={this.onLoadRecaptcha}
+              verifyCallback={this.verifyCallback}
+            />  
           </div>
         );
     }

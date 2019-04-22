@@ -168,6 +168,12 @@
   color: black;
 }
 
+#g-recaptcha {
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+}
+
 /* Add a color to the active/current link */
 .topnav a.active {
   background-color: #499;

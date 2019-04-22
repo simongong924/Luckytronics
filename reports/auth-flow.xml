@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="1"
+            failures="0"
+            tests="0">
+
+  <testsuite name="auth-flow"
+    errors="1" failures="0" hostname="" id="" package="auth-flow" skipped="4"
+    tests="0" time="0.000" timestamp="">
+  
+
+  
+
+  
+    
+    <testcase
+      name="get to login page" classname="auth-flow">
+      <skipped />
+    </testcase>
+    
+    <testcase
+      name="logging in" classname="auth-flow">
+      <skipped />
+    </testcase>
+    
+    <testcase
+      name="logging out" classname="auth-flow">
+      <skipped />
+    </testcase>
+    
+    <testcase
+      name="close" classname="auth-flow">
+      <skipped />
+    </testcase>
+    
+  
+  </testsuite>
+</testsuites>
