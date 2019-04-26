@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import SignInForm from './SignInForm';
+import {SignInForm} from '../SignInForm';
 import renderer from 'react-test-renderer';
 import {mount} from 'enzyme';
 import { configure } from 'enzyme';
@@ -13,30 +13,14 @@ configure({ adapter: new Adapter() });
 
 describe('<SignInForm />',() => {
 	let wrapper;
-/*
-it('has 2 inputs', () => {
-const editor = shallow(<SignInForm />);
-expect(editor.find('input').length).toEqual(2);
-});
-*/
 it("renders without error",() =>{
 const SignInComponent = renderer.create(
 <SignInForm />).toJSON();
 
 	expect(SignInComponent).toMatchSnapshot();
 });
-/*
-it('no error',()=>{
-	const props ={
-	//	email: 'johntan@gmail.com',
-		password:'john'
-	},
-	tree = mount(<SignInForm {...props}/>);
-	tree.find('button').simulate('click');
-	//expect(SignInForm).to.have.been.called;
-	sinon.assert.notCalled(console.error);
-});
-*/it('check if email and password is null on render',()=> {
+
+it('check if email and password is null on render',()=> {
 	const props = {
 		email : null,
 		password :null

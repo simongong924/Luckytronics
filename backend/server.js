@@ -8,6 +8,9 @@ const passport = require("passport");
 // const jwt = require('jsonwebtoken');
 // const cookieParser = require('cookie-parser');
 // const withAuth = require('./middleware');
+const multer = require("multer");
+const cloudinary = require("cloudinary");
+const cloudinaryStorage = require("multer-storage-cloudinary");
 
 const users = require("./routes/api/user");
 // let Ticket = require('./ticket.model');
@@ -170,3 +173,19 @@ require("./config/passport")(passport);
 app.use("/api/users", users);
 const port = process.env.PORT || 5000;
 app.listen(port, () => console.log(`Server up and running on port ${port} !`));
+
+//cloudinary hosting images
+cloudinary.config({
+cloud_name: 'dwvcz9r2d',
+api_key: '986159691693718',
+api_secret: 'IBtfpG56npIwtY1J-HIuuej9JJY'
+});
+
+const storage = cloudinaryStorage({
+cloudinary: cloudinary,
+folder: "demo",
+allowedFormats: ["jpg", "png"],
+transformation: [{ width: 500, height: 500, crop: "limit" }]
+});
+
+const parser = multer({ storage: storage });

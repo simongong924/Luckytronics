@@ -6,14 +6,18 @@ import { connect } from "react-redux";
 import { loginUser } from "../actions/authActions";
 import classnames from "classnames";
 
+import {ReCaptcha} from 'react-recaptcha-google';
 
-class SignInForm extends Component {
+export class SignInForm extends Component {
     constructor() {
         super();
+        this.onLoadRecaptcha = this.onLoadRecaptcha.bind(this);
+        this.verifyCallback = this.verifyCallback.bind(this);
         this.state = {
             email: '',
             password: '',
-            errors:{}
+            errors:{},
+            isHuman:false
         };
     }
 
@@ -22,8 +26,25 @@ class SignInForm extends Component {
       if (this.props.auth.isAuthenticated) {
         this.props.history.push("/dashboard");
       }
+       if (this.captchaDemo) {
+        console.log("just started");
+        this.captchaDemo.reset();
+      }
+    }
+    onLoadRecaptcha(){
+      if (this.captchaDemo) {
+      this.captchaDemo.reset();
+      }
     }
 
+    verifyCallback(recaptchaToken){
+      console.log(recaptchaToken," <- This is your token");
+      if (recaptchaToken) {
+      this.setState({
+      isHuman:true
+      })
+      }
+    } 
 
     componentWillReceiveProps(nextProps) {
     if (nextProps.auth.isAuthenticated) {
@@ -41,6 +62,7 @@ class SignInForm extends Component {
     };
 
     onSubmit = e => {
+        if (this.state.isHuman) {
         e.preventDefault();
         const userData = {
           email: this.state.email,
@@ -49,7 +71,10 @@ class SignInForm extends Component {
         console.log(userData);
         // console.log(this.props.loginUser);
         this.props.loginUser(userData);
-    };
+    }
+        else{
+          alert :'veryify captcha';
+        }};
     render() {
         const { errors } = this.state;
         return (
@@ -90,9 +115,18 @@ class SignInForm extends Component {
                     {errors.passwordincorrect}</span>
               </div>
               <div className="FormField">
-                  <button className="FormField__Button mr-20">Sign In</button>
+                  <button className="FormField__Button mr-20">
+                  Sign In</button>
                   <Link to="/signup" className="FormField__Link">Create new account</Link></div>
+              <ReCaptcha
+                sitekey="6Ld_Y58UAAAAANxW9B7B46ZthRasoC1Fqo3LdtcG"
+                render="explicit"
+                size="normal"
+                onloadCallback={this.onLoadRecaptcha}
+                verifyCallback={this.verifyCallback}
+              />
             </form>
+
           </div>
         );
     }

@@ -5,11 +5,15 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { registerUser } from "../actions/authActions";
 import classnames from "classnames";
-
+import {ReCaptcha} from 'react-recaptcha-google';
 
 class SignUpForm extends Component {
     constructor() {
         super();
+
+        this.onLoadRecaptcha = this.onLoadRecaptcha.bind(this);
+        this.verifyCallback = this.verifyCallback.bind(this);
+        
         this.state = {
             email: '',
             password: '',
@@ -17,7 +21,8 @@ class SignUpForm extends Component {
             name: '',
             company: '',
             hasAgreed: false,
-            errors:{}
+            errors:{},
+            isHuman:false
         };
     }
 
@@ -26,7 +31,25 @@ class SignUpForm extends Component {
     if (this.props.auth.isAuthenticated) {
       this.props.history.push("/dashboard");
     }
+      if (this.captchaDemo) {
+        console.log("just started");
+        this.captchaDemo.reset();
+      }
   }
+  onLoadRecaptcha(){
+      if (this.captchaDemo) {
+      this.captchaDemo.reset();
+      }
+    }
+
+  verifyCallback(recaptchaToken){
+      console.log(recaptchaToken," <- This is your token");
+      if (recaptchaToken) {
+      this.setState({
+      isHuman:true
+      })
+      }
+    } 
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.errors) {
@@ -41,6 +64,7 @@ class SignUpForm extends Component {
   };
 
   onSubmit = e => {
+    if (this.state.isHuman) {
     e.preventDefault();
     const newUser = {
           name: this.state.name,
@@ -52,7 +76,11 @@ class SignUpForm extends Component {
           hasAgreed: false
         };
     this.props.registerUser(newUser, this.props.history);
-  };
+  }
+  else{
+    alert('please verify captcha');
+  }
+};
   render() {
     const { errors } = this.state;
         return (
@@ -130,6 +158,13 @@ class SignUpForm extends Component {
                   <button className="FormField__Button mr-20">Sign Up</button>
                   <Link to="/sign-in" className="FormField__Link">I'm already member</Link>
               </div>
+             <ReCaptcha
+                sitekey="6Ld_Y58UAAAAANxW9B7B46ZthRasoC1Fqo3LdtcG"
+                render="explicit"
+                size="normal"
+                onloadCallback={this.onLoadRecaptcha}
+                verifyCallback={this.verifyCallback}
+              />
             </form>
           </div>
         );

@@ -59,6 +59,8 @@ router.post("/SignInForm", (req, res) => {
   // Form validation
 
   const { errors, isValid } = validateLoginInput(req.body);
+  console.log("here");
+  console.log(errors);
 
   // Check validation
   if (!isValid) {
