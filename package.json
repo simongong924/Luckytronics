@@ -4,14 +4,29 @@
   "private": true,
   "homepage": "http://iamfaiz.github.io/react-auth-ui/",
   "dependencies": {
+    "@pusher/chatkit-client": "^1.4.1",
+    "@pusher/chatkit-server": "^1.1.0",
     "axios": "^0.18.0",
     "bootstrap": "^4.3.1",
+    "chatkit": "0.0.1-security",
+    "classnames": "^2.2.6",
+    "date-fns": "^1.30.1",
     "gh-pages": "^1.1.0",
+    "is-empty": "^1.2.0",
+    "jest-extended": "^0.11.1",
+    "jwt-decode": "^2.2.0",
     "mongodb": "^3.1.13",
     "react": "^16.3.2",
+    "react-bootstrap-table": "^4.3.1",
     "react-dom": "^16.3.2",
-    "react-router-dom": "^4.2.2",
-    "react-scripts": "1.1.4"
+    "react-recaptcha-google": "^1.1.1",
+    "react-redux": "^7.0.1",
+    "react-router-dom": "^4.3.1",
+    "react-scripts": "1.1.4",
+    "react-xml-parser": "^1.1.2",
+    "redux": "^4.0.1",
+    "redux-thunk": "^2.3.0",
+    "sinon": "^7.3.1"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -19,8 +34,10 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "predeploy": "yarn run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "dev": "concurrently \"cd backend nodemon server\" \"npm run client\""
   },
+  "proxy": "http://localhost:5000",
   "devDependencies": {
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.11.2",
